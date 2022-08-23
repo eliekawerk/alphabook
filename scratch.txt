@@ -1,0 +1,17 @@
+#for ticker in universe_tickers:
+ #   tmp_df = pdr.get_data_yahoo(ticker, start=period_start, end=period)[['Adj Close']]
+  #  tmp_df['Ticker'] = ticker
+   # prices_df = pd.concat([prices_df, tmp_df])
+
+# Validate data
+#print(prices_df.tail(5))
+#print(prices_df.isnull().sum())
+#print(prices_df.groupby('ticker')['adj_close'].agg(['count']))
+
+# Standardize col names
+#prices_df.index = prices_df.index.rename('date')
+#prices_df.columns = ['price', 'ticker']
+
+# Flatten the columns multi-index
+#prices_df = prices_df.pivot_table(index='date', columns='ticker', values=['price'])
+#prices_df.columns = [col[1] for col in prices_df.columns.values]
