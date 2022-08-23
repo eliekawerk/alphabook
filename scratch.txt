@@ -15,3 +15,8 @@
 # Flatten the columns multi-index
 #prices_df = prices_df.pivot_table(index='date', columns='ticker', values=['price'])
 #prices_df.columns = [col[1] for col in prices_df.columns.values]
+
+asset_df = asset_df.rename_axis(index={'Date': 'date'})
+
+print(asset_df.index.names)
+print(asset_df.columns)
