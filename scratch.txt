@@ -20,3 +20,14 @@ asset_df = asset_df.rename_axis(index={'Date': 'date'})
 
 print(asset_df.index.names)
 print(asset_df.columns)
+
+today = datetime.datetime.today()
+next_month = today + dateutil.relativedelta.relativedelta(months=1)
+cal_range_start = datetime.date(year=today.year, month=today.month, day=1)
+cal_range_end_day = calendar.monthrange(year=next_month.year, month=next_month.month)[1]
+cal_range_end = datetime.date(year=next_month.year, month=next_month.month, day=cal_range_end_day)
+
+# Load trading venue calendar using date range
+exch_cal = mcal.get_calendar(exchange_label)
+exch_sched_df = exch_cal.schedule(start_date=cal_range_start, end_date=cal_range_end)
+exch_curr_eom = exch_sched_df[exch_sched_df.index.month == today.month].iloc[-1]['market_close'].date()
